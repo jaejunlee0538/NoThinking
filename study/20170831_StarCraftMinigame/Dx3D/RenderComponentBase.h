@@ -7,7 +7,6 @@ namespace qwer {
 	public:
 		RenderComponentBase();
 		virtual ~RenderComponentBase();
-
 		virtual void Render() = 0;
 	};
 }

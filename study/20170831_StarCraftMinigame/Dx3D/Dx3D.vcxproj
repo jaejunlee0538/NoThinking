@@ -81,6 +81,7 @@
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="ColliderBase.h" />
     <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="CRC32.h" />
@@ -96,6 +97,7 @@
     <ClInclude Include="STLUtils.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Vector3.h" />
+    <ClInclude Include="Viewport.h" />
     <ClInclude Include="WindowSystem.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="GiveDamage.h" />
@@ -113,6 +115,7 @@
     <ClInclude Include="TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="ColliderBase.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="CRC32.cpp" />

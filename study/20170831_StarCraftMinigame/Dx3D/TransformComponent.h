@@ -8,6 +8,5 @@ namespace qwer {
 		TransformComponent();
 		~TransformComponent();
 
-
 	};
 }

@@ -144,6 +144,12 @@
     <ClInclude Include="Vector3.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewport.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColliderBase.cpp">
@@ -220,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="Vector3.cpp">
       <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

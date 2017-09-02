@@ -8,7 +8,6 @@ namespace qwer
 	public:
 		GameObject();
 		virtual ~GameObject();
-
 	};
 }
 
