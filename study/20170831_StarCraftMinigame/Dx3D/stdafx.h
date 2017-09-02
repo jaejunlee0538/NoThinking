@@ -35,7 +35,7 @@
 #include "Logger.h"
 #include "Math.h"
 #include "HashStringID.h"
-#define SINGLETON(classname)	\
+#define MAKE_SINGLETON(classname)	\
 private:\
 classname() {}\
 ~classname() {}\

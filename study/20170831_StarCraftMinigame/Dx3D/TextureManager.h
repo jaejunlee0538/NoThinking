@@ -6,5 +6,12 @@ namespace qwer {
 	public:
 		TextureManager();
 		~TextureManager();
+
+		bool Startup();
+		void Shutdown();
+
+		void ReleaseUnusedTexture();
+		void ReleaseTexture(CName name);
+		
 	};
 }
