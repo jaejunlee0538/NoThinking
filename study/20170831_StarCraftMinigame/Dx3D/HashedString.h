@@ -19,7 +19,6 @@ namespace qwer {
 
 		bool Empty() const;
 		void Reset();
-		void AddRef();
 		const char* c_str() const;
 		size_t Length() const;
 
@@ -27,6 +26,8 @@ namespace qwer {
 		static size_t GetNumberOfNames();
 		static void ReleaseNameTable();
 	private:
+		//안전한 RefCounting을 위해 주소 반환 연산자를 사용을 금지하낟.
+		void* operator&() { return this; }
 		static StringTable* GetNameTable();
 		static void _AddRef(const char* pStr);
 		static int _Release(const char* pStr);

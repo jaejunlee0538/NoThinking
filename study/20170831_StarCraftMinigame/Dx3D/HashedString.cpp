@@ -47,11 +47,6 @@ namespace qwer {
 			}
 		}
 
-		StringTableEntry* FindName(const char* str) {
-			StringTableEntry* pEntry = FindInMap(m_nameTable, str, nullptr);
-			return pEntry;
-		}
-
 		StringTableEntry* GetName(const char* str) {
 			StringTableEntry* pEntry = FindInMap(m_nameTable, str, nullptr);
 			if (!pEntry) {
@@ -78,6 +73,18 @@ namespace qwer {
 			}
 		}
 
+		//void RemoveUnusedNames() {
+		//	for (auto it = m_nameTable.begin(); it != m_nameTable.end();) {
+		//		if (it->second->nRefCount == 0) {
+		//			free(it->second);
+		//			it = m_nameTable.erase(it);
+		//		}
+		//		else {
+		//			++it;
+		//		}
+		//	}
+		//}
+
 		bool HasName(const char* str) const {
 			return FindInMap(m_nameTable, str, nullptr) != nullptr;
 		}
@@ -100,9 +107,10 @@ namespace qwer {
 
 	HashedString::HashedString(const char * str){
 		const char* pStr = nullptr;
-		if (pStr && *pStr)
+		if (str && str[0]) {
 			pStr = GetNameTable()->GetName(str)->GetStr();
-		_AddRef(pStr);
+			_AddRef(pStr);
+		}
 		m_pStr = pStr;
 	}
 
@@ -114,17 +122,18 @@ namespace qwer {
 	HashedString & HashedString::operator=(const HashedString & name)
 	{
 		_AddRef(name.m_pStr);
-		_Release(m_pStr);
-		m_pStr = name.m_pStr;
+		_Release(m_pStr);//기존에 저장되어 있던 String의 Ref를 1 줄인다.
+		m_pStr = name.m_pStr;//새로운 String으로 교체
 		return *this;
 	}
 
 	HashedString & HashedString::operator=(const char * str)
 	{
 		const char* pStr = nullptr;
-		if (str && *str)
+		if (str && str[0]) {
 			pStr = GetNameTable()->GetName(str)->GetStr();
-		_AddRef(pStr);
+			_AddRef(pStr);
+		}
 		_Release(m_pStr);
 		m_pStr = pStr;
 		return *this;
@@ -132,11 +141,13 @@ namespace qwer {
 
 	bool HashedString::operator==(const HashedString & name) const
 	{
+		//string의 주소값으로 문자열 비교
 		return m_pStr == name.m_pStr;
 	}
 
 	bool HashedString::operator<(const HashedString & name) const
 	{
+		//string의 주소값으로 문자열 비교
 		return m_pStr < name.m_pStr;
 	}
 
@@ -149,11 +160,8 @@ namespace qwer {
 		m_pStr = nullptr;
 	}
 
-	void HashedString::AddRef() {
-		_AddRef(m_pStr);
-	}
-
 	const char * HashedString::c_str() const {
+		//문자열이 없는 경우에 nullptr대신 빈 문자열을 반환해서 nullptr을 참조하는 일이 없도록
 		return m_pStr ? m_pStr : "";
 	}
 
@@ -162,7 +170,7 @@ namespace qwer {
 	}
 
 	bool HashedString::HasName(const char * str) {
-		return GetNameTable()->FindName(str) != 0;
+		return GetNameTable()->HasName(str) != 0;
 	}
 
 	size_t HashedString::GetNumberOfNames(){
