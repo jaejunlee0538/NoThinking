@@ -2,6 +2,7 @@
 
 
 #define g_pSceneManager cSceneManager::GetInstance()
+
 class cGameScene;
 class cSceneManager
 {
@@ -13,13 +14,13 @@ public:
 	typedef map<string, cGameScene*>::iterator mapSceneIter;
 
 private:
-	static cGameScene* _currentScene; //ÇöÀç¾À
-	static cGameScene* _loadingScene; //·Îµù¾À
-	static cGameScene* _readyScene; //±³Ã¼ ´ë±â ÁßÀÎ ¾À
+	static cGameScene* m_pCurrentScene; //ÇöÀç¾À
+	static cGameScene* m_pLoadingScene; //·Îµù¾À
+	static cGameScene* m_ReadyScene; //±³Ã¼ ´ë±â ÁßÀÎ ¾À
 
-	mapSceneList _mSceneList; //¾À¸®½ºÆ®
+	mapSceneList m_mapSceneList; //¾À¸®½ºÆ®
 
-	DWORD _loadThreadID;
+	DWORD m_dwLoadThreadID;
 
 public:
 	void Setup(void);
