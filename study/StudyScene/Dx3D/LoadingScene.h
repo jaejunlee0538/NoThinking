@@ -1,5 +1,6 @@
 #pragma once
 #include "cGameScene.h"
+
 class LoadingScene :
 	public cGameScene
 {

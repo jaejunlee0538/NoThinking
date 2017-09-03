@@ -2,6 +2,8 @@
 #include "cMainGame.h"
 #include "cSceneManager.h"
 #include "LoadingScene.h"
+#include "cHeightMap.h"
+
 cMainGame::cMainGame(void)
 {
 }
@@ -15,8 +17,9 @@ HRESULT cMainGame::Setup()
 {
 	g_pD3DDevice;
 
-	g_pSceneManager->addScene("LoadingScene", new LoadingScene());
-	g_pSceneManager->changeScene("LoadingScene");
+	g_pSceneManager->addScene("cHeightMap", new cHeightMap);
+	g_pSceneManager->changeScene("cHeightMap");
+
 	return S_OK;
 }
 
@@ -38,5 +41,5 @@ void cMainGame::Render()
 
 void cMainGame::MsgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	//MsgProc
+
 }
