@@ -11,7 +11,7 @@ namespace qwer {
 		void Shutdown();
 
 		void ReleaseUnusedTexture();
-		void ReleaseTexture(CName name);
+		void ReleaseTexture(HashedString name);
 		
 	};
 }

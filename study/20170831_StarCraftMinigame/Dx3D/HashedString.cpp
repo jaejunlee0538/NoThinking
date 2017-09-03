@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "HashStringID.h"
+#include "HashedString.h"
 namespace qwer {
-	struct NameTableEntry {
+	struct StringTableEntry {
 		int nRefCount;
 		size_t nLength;
 		size_t nAllocSize;
@@ -9,11 +9,11 @@ namespace qwer {
 		const char* GetStr() { return (char*)(this + 1); }
 		void AddRef() { nRefCount++; }
 		int Release() { return --nRefCount; }
-		size_t GetMemoryUsage() { return sizeof(NameTableEntry) + strlen(GetStr()); }
+		size_t GetMemoryUsage() { return sizeof(StringTableEntry) + strlen(GetStr()); }
 		size_t GetLength() { return nLength; }
 	};
 
-	class NameTable {
+	class StringTable {
 	private:
 		struct HashFunc
 		{
@@ -33,31 +33,31 @@ namespace qwer {
 			}
 		};
 	private:
-		typedef std::unordered_map<const char*, NameTableEntry*, HashFunc, HashFunc> NameTableType;
+		typedef std::unordered_map<const char*, StringTableEntry*, HashFunc, HashFunc> NameTableType;
 		NameTableType m_nameTable;
 
 	public:
-		NameTable() {
+		StringTable() {
 
 		}
 
-		~NameTable() {
+		~StringTable() {
 			for (auto it = m_nameTable.begin(); it != m_nameTable.end(); ++it) {
 				free(it->second);
 			}
 		}
 
-		NameTableEntry* FindName(const char* str) {
-			NameTableEntry* pEntry = FindInMap(m_nameTable, str, nullptr);
+		StringTableEntry* FindName(const char* str) {
+			StringTableEntry* pEntry = FindInMap(m_nameTable, str, nullptr);
 			return pEntry;
 		}
 
-		NameTableEntry* GetName(const char* str) {
-			NameTableEntry* pEntry = FindInMap(m_nameTable, str, nullptr);
+		StringTableEntry* GetName(const char* str) {
+			StringTableEntry* pEntry = FindInMap(m_nameTable, str, nullptr);
 			if (!pEntry) {
 				size_t nStrLen = strlen(str);
-				size_t nAllocLen = sizeof(NameTableEntry) + (nStrLen + 1) * sizeof(char);
-				pEntry = (NameTableEntry*)malloc(nAllocLen);
+				size_t nAllocLen = sizeof(StringTableEntry) + (nStrLen + 1) * sizeof(char);
+				pEntry = (StringTableEntry*)malloc(nAllocLen);
 				assert(pEntry);
 				pEntry->nRefCount = 0;
 				pEntry->nLength = nStrLen;
@@ -71,7 +71,7 @@ namespace qwer {
 			return pEntry;
 		}
 
-		void RemoveName(NameTableEntry* pEntry) {
+		void RemoveName(StringTableEntry* pEntry) {
 			assert(pEntry);
 			if (m_nameTable.erase(pEntry->GetStr())) {
 				free(pEntry);
@@ -87,18 +87,18 @@ namespace qwer {
 		}
 	};
 	
-	NameTable* CName::m_pNameTable = nullptr;
+	StringTable* HashedString::m_pNameTable = nullptr;
 
-	CName::CName()
+	HashedString::HashedString()
 		:m_pStr(nullptr){
 	}
 
-	CName::CName(const CName& name){
+	HashedString::HashedString(const HashedString& name){
 		_AddRef(name.m_pStr);
 		m_pStr = name.m_pStr;
 	}
 
-	CName::CName(const char * str){
+	HashedString::HashedString(const char * str){
 		const char* pStr = nullptr;
 		if (pStr && *pStr)
 			pStr = GetNameTable()->GetName(str)->GetStr();
@@ -106,12 +106,12 @@ namespace qwer {
 		m_pStr = pStr;
 	}
 
-	CName::~CName()
+	HashedString::~HashedString()
 	{
 		_Release(m_pStr);
 	}
 
-	CName & CName::operator=(const CName & name)
+	HashedString & HashedString::operator=(const HashedString & name)
 	{
 		_AddRef(name.m_pStr);
 		_Release(m_pStr);
@@ -119,7 +119,7 @@ namespace qwer {
 		return *this;
 	}
 
-	CName & CName::operator=(const char * str)
+	HashedString & HashedString::operator=(const char * str)
 	{
 		const char* pStr = nullptr;
 		if (str && *str)
@@ -130,69 +130,69 @@ namespace qwer {
 		return *this;
 	}
 
-	bool CName::operator==(const CName & name) const
+	bool HashedString::operator==(const HashedString & name) const
 	{
 		return m_pStr == name.m_pStr;
 	}
 
-	bool CName::operator<(const CName & name) const
+	bool HashedString::operator<(const HashedString & name) const
 	{
 		return m_pStr < name.m_pStr;
 	}
 
-	bool CName::Empty() const {
+	bool HashedString::Empty() const {
 		return m_pStr == nullptr;
 	}
 
-	void CName::Reset() {
+	void HashedString::Reset() {
 		_Release(m_pStr);
 		m_pStr = nullptr;
 	}
 
-	void CName::AddRef() {
+	void HashedString::AddRef() {
 		_AddRef(m_pStr);
 	}
 
-	const char * CName::c_str() const {
+	const char * HashedString::c_str() const {
 		return m_pStr ? m_pStr : "";
 	}
 
-	size_t CName::Length() const {
-		return m_pStr ? ((NameTableEntry*)m_pStr)->nLength : 0;
+	size_t HashedString::Length() const {
+		return m_pStr ? ((StringTableEntry*)m_pStr)->nLength : 0;
 	}
 
-	bool CName::HasName(const char * str) {
+	bool HashedString::HasName(const char * str) {
 		return GetNameTable()->FindName(str) != 0;
 	}
 
-	size_t CName::GetNumberOfNames(){
+	size_t HashedString::GetNumberOfNames(){
 		return GetNameTable()->GetNumberOfNames();
 	}
 
-	void CName::ReleaseNameTable()
+	void HashedString::ReleaseNameTable()
 	{
 		SAFE_DELETE(m_pNameTable);
 	}
 
-	NameTable * CName::GetNameTable()
+	StringTable * HashedString::GetNameTable()
 	{
 		if (m_pNameTable) {
-			m_pNameTable = new NameTable();
+			m_pNameTable = new StringTable();
 		}
 		return m_pNameTable;
 	}
 
-	void CName::_AddRef(const char * pStr)
+	void HashedString::_AddRef(const char * pStr)
 	{
 		if (pStr) {
-			((NameTableEntry*)pStr)->AddRef();
+			((StringTableEntry*)pStr)->AddRef();
 		}
 	}
 
-	int CName::_Release(const char * pStr)
+	int HashedString::_Release(const char * pStr)
 	{
 		if (pStr) {
-			NameTableEntry* pNameEntry = ((NameTableEntry*)pStr);
+			StringTableEntry* pNameEntry = ((StringTableEntry*)pStr);
 			if (pNameEntry->Release() <= 0) {
 				GetNameTable()->RemoveName(pNameEntry);
 			}

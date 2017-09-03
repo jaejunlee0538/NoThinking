@@ -11,7 +11,7 @@ namespace qwer
 
 	private:
 		//int m_nMaxEnemies;
-		CName m_enemyName;
+		HashedString m_enemyName;
 	};
 }
 

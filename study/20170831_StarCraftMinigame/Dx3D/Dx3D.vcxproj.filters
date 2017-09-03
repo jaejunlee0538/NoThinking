@@ -117,9 +117,6 @@
     <ClInclude Include="CRC32.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="HashStringID.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="STLUtils.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -155,6 +152,12 @@
     </ClInclude>
     <ClInclude Include="MessageManager.h">
       <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="HashOnlyString.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="HashedString.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,9 +215,6 @@
     <ClCompile Include="CRC32.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="HashStringID.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
@@ -241,6 +241,12 @@
     </ClCompile>
     <ClCompile Include="MessageManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="HashOnlyString.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="HashedString.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@ namespace qwer
 		GameObjectManager();
 		~GameObjectManager();
 		
-		static std::unordered_map<CName, GameObject*> m_objectsByName;
-		static std::multimap<CName, GameObject*> m_objectsByTag;
+		static std::unordered_map<HashedString, GameObject*> m_objectsByName;
+		static std::multimap<HashedString, GameObject*> m_objectsByTag;
 	};
 }

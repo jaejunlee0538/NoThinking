@@ -76,7 +76,7 @@ Shutdown_From_Logger:
 	logger.Shutdown();
 	timeManager.Shutdown();
 
-	CName::ReleaseNameTable();
+	HashedString::ReleaseNameTable();
 
 	return 0;
 }

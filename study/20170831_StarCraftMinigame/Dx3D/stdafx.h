@@ -34,7 +34,9 @@
 #include "TimeManager.h"
 #include "Logger.h"
 #include "Math.h"
-#include "HashStringID.h"
+#include "HashedString.h"
+#include "HashOnlyString.h"
+
 #define MAKE_SINGLETON(classname)	\
 private:\
 classname() {}\

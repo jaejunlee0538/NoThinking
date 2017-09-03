@@ -7,6 +7,7 @@ namespace qwer {
 	class ComponentBase
 	{
 	protected:
+		HashedString m_name;
 		GameObject* m_pOwner;
 		bool m_bEnabled;
 	public:
