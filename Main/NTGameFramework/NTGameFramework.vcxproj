@@ -168,7 +168,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DBMANAGER.CPP" />
     <ClCompile Include="NT_Component\CameraComponent.cpp" />
     <ClCompile Include="NT_Component\ComponentBase.cpp" />
     <ClCompile Include="NT_Common\CRC32.cpp" />
