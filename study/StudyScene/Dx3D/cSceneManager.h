@@ -2,22 +2,20 @@
 
 
 #define g_pSceneManager cSceneManager::GetInstance()
-
-class cMainGame;
-
+class cGameScene;
 class cSceneManager
 {
 private:
 	SINGLETON(cSceneManager)
 
 public:
-	typedef map<string, cMainGame*> mapSceneList;
-	typedef map<string, cMainGame*>::iterator mapSceneIter;
+	typedef map<string, cGameScene*> mapSceneList;
+	typedef map<string, cGameScene*>::iterator mapSceneIter;
 
 private:
-	static cMainGame* _currentScene; //ÇöÀç¾À
-	static cMainGame* _loadingScene; //·Îµù¾À
-	static cMainGame* _readyScene; //±³Ã¼ ´ë±â ÁßÀÎ ¾À
+	static cGameScene* _currentScene; //ÇöÀç¾À
+	static cGameScene* _loadingScene; //·Îµù¾À
+	static cGameScene* _readyScene; //±³Ã¼ ´ë±â ÁßÀÎ ¾À
 
 	mapSceneList _mSceneList; //¾À¸®½ºÆ®
 
@@ -30,7 +28,7 @@ public:
 	void render(void);
 
 	//¾À Ãß°¡ÇÑ´Ù
-	cMainGame* addScene(string sceneName, cMainGame* scene);
+	cGameScene* addScene(string sceneName, cGameScene* scene);
 
 	//¾À ±³Ã¼...
 	HRESULT changeScene(string sceneName);

@@ -50,9 +50,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	g_pMainGame = new cMainGame;
 	g_pMainGame->Setup();
 
-	g_pGameScene = new cGameScene;
-	g_pGameScene->Setup();
-
 	// 기본 메시지 루프입니다.
 	while(true)
 	{
@@ -73,14 +70,11 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 			// 업데이트 하고 그림 그린다.
 			g_pMainGame->Update();
 			g_pMainGame->Render();
-
-			g_pGameScene->Update();
-			g_pGameScene->Render();
 		}
 	}
 
 	if(g_pMainGame) delete g_pMainGame;
-	if (g_pGameScene) delete g_pGameScene;
+
 	return (int) msg.wParam;
 }
 

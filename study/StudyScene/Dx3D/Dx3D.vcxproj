@@ -114,7 +114,6 @@
     <ClInclude Include="cRawLoader.h" />
     <ClInclude Include="cRay.h" />
     <ClInclude Include="cSceneManager.h" />
-    <ClInclude Include="cSceneTest.h" />
     <ClInclude Include="cSkinnedMesh.h" />
     <ClInclude Include="cSkinnedMeshManager.h" />
     <ClInclude Include="cTerrain.h" />
@@ -126,6 +125,7 @@
     <ClInclude Include="cUITextView.h" />
     <ClInclude Include="Dx3D.h" />
     <ClInclude Include="iMap.h" />
+    <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -162,7 +162,6 @@
     <ClCompile Include="cRawLoader.cpp" />
     <ClCompile Include="cRay.cpp" />
     <ClCompile Include="cSceneManager.cpp" />
-    <ClCompile Include="cSceneTest.cpp" />
     <ClCompile Include="cSkinnedMesh.cpp" />
     <ClCompile Include="cSkinnedMeshManager.cpp" />
     <ClCompile Include="cTerrain.cpp" />
@@ -174,6 +173,7 @@
     <ClCompile Include="cUITextView.cpp" />
     <ClCompile Include="Dx3D.cpp" />
     <ClCompile Include="iMap.cpp" />
+    <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

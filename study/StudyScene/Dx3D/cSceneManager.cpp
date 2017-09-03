@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "cSceneManager.h"
-#include "cMainGame.h"
+#include "cGameScene.h"
 
 DWORD CALLBACK loadingThread(LPVOID prc)
 {
@@ -11,16 +11,16 @@ DWORD CALLBACK loadingThread(LPVOID prc)
 	cSceneManager::_currentScene = cSceneManager::_readyScene;
 
 	//해제...
-	cSceneManager::_loadingScene->~cMainGame();
+	cSceneManager::_loadingScene->~cGameScene();
 	cSceneManager::_loadingScene = NULL;
 	cSceneManager::_readyScene = NULL;
 
 	return NULL;
 }
 
-cMainGame* cSceneManager::_currentScene = NULL;
-cMainGame* cSceneManager::_loadingScene = NULL;
-cMainGame* cSceneManager::_readyScene = NULL;
+cGameScene* cSceneManager::_currentScene = NULL;
+cGameScene* cSceneManager::_loadingScene = NULL;
+cGameScene* cSceneManager::_readyScene = NULL;
 
 cSceneManager::cSceneManager()
 {
@@ -49,7 +49,7 @@ void cSceneManager::release(void)
 		//지울 수 있으면 반복자 증가 x
 		if (iter->second != NULL)
 		{
-			if (_currentScene == iter->second) iter->second->~cMainGame();
+			if (_currentScene == iter->second) iter->second->~cGameScene();
 			SAFE_DELETE(iter->second);
 			iter = _mSceneList.erase(iter);
 		}
@@ -73,7 +73,7 @@ void cSceneManager::render(void)
 	if (_currentScene) _currentScene->Render();
 }
 
-cMainGame * cSceneManager::addScene(string sceneName, cMainGame * scene)
+cGameScene * cSceneManager::addScene(string sceneName, cGameScene * scene)
 {
 	if (!scene) return NULL;
 	_mSceneList.insert(make_pair(sceneName, scene));
@@ -91,7 +91,8 @@ HRESULT cSceneManager::changeScene(string sceneName)
 	//교체 씬 초기화
 	if (SUCCEEDED(find->second->Setup()))
 	{
-		if (_currentScene) _currentScene->~cMainGame();
+		if (_currentScene) 
+			delete _currentScene;
 		_currentScene = find->second;
 
 		return S_OK;

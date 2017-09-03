@@ -2,10 +2,6 @@
 
 class cMainGame
 {
-	
-private:
-	HDC _hdc;
-
 public:
 	cMainGame(void);
 	virtual ~cMainGame(void);
@@ -13,6 +9,6 @@ public:
 	virtual HRESULT Setup();
 	virtual void Update();
 	virtual void Render();
-	void MsgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	virtual void MsgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
 

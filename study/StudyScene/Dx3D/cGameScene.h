@@ -4,16 +4,15 @@
 
 #include "cHeightMap.h"
 
-class cGameScene :public cMainGame
+class cGameScene
 {
 public:
 	cGameScene();
 	~cGameScene();
 
-	virtual HRESULT Setup();
-	virtual void Update();
-	virtual void Render();
-	void MsgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
+	virtual HRESULT Setup() = 0;
+	virtual void Update() = 0;
+	virtual void Render() = 0;
+	virtual void MsgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) = 0;
 };
 
