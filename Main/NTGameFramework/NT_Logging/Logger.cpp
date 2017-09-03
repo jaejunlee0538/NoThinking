@@ -11,6 +11,8 @@ namespace qwer {
 				return "GENERAL";
 			case CHANNEL_CORE:
 				return "CORE";
+			case CHANNEL_SOUND:
+				return "SOUND";
 			default:
 				assert(false && "정의되지 않은 채널입니다.");
 			}

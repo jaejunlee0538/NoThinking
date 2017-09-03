@@ -134,6 +134,7 @@
     <ClInclude Include="NT_Physics\PhysicsSystem.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="NT_Sound\SoundManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -212,5 +213,6 @@
     <ClCompile Include="NT_Physics\PhysicsSystem.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="NT_Sound\SoundManager.cpp" />
   </ItemGroup>
 </Project>

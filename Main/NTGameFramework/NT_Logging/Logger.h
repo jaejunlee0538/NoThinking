@@ -5,7 +5,8 @@ namespace qwer {
 	namespace Logging {
 		enum Channels {
 			CHANNEL_GENERAL = 0,
-			CHANNEL_CORE
+			CHANNEL_CORE,
+			CHANNEL_SOUND
 		};
 
 		enum VerbosityLevel {

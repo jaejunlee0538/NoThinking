@@ -92,7 +92,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir);C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)\Externals\Include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile>$(IntDir)\stdafx.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
@@ -103,6 +103,10 @@
     <PostBuildEvent>
       <Command>xcopy $(ProjectDir)*.h $(OutDir)Include /Y /E /I /S /exclude:excludeFiles.txt</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Externals\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -128,7 +132,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir);C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)\Externals\Include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -140,6 +144,10 @@
     <PostBuildEvent>
       <Command>xcopy $(ProjectDir)*.h $(OutDir)Include\NoThinking /Y /E /I /S /exclude:excludeFiles.txt</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Externals\fmod_4435\fmodex_vc.lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -180,6 +188,7 @@
     <ClCompile Include="NT_Physics\PhysicsSystem.cpp" />
     <ClCompile Include="NT_Math\Quaternion.cpp" />
     <ClCompile Include="NT_Component\RenderComponentBase.cpp" />
+    <ClCompile Include="NT_Sound\SoundManager.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="NT_Graphic\TextureManager.cpp" />
     <ClCompile Include="NT_Common\TimeManager.cpp" />
@@ -215,6 +224,7 @@
     <ClInclude Include="NT_Math\Quaternion.h" />
     <ClInclude Include="NT_Component\RenderComponentBase.h" />
     <ClInclude Include="NT_Common\Singleton.h" />
+    <ClInclude Include="NT_Sound\SoundManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="NT_Common\STLUtils.h" />
     <ClInclude Include="NT_Graphic\TextureManager.h" />

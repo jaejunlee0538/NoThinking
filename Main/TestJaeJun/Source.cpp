@@ -7,7 +7,8 @@
 #include <NT_Graphic\GraphicSystem.h>
 #include <NT_Common\HashedString.h>
 #include <NT_Common\FreqEstimater.h>
-#include <NT_Input/InputManager.h>
+#include <NT_Input\InputManager.h>
+#include <NT_Sound\SoundManager.h>
 
 #define STARTUP_MANAGER(Mgr, ...) \
 LOG_INFO(Logging::CHANNEL_CORE, #Mgr" 초기화");\
@@ -39,10 +40,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	GraphicSystem graphicSystem;
 	WindowManager windowManager(hInstance);
 	InputManager inputManager;
+	SoundManager soundManager;
 
 	STARTUP_MANAGER(windowManager, 800, 600);
 	STARTUP_MANAGER(graphicSystem, TRUE, windowManager.GetHWND());
 	STARTUP_MANAGER(inputManager);
+	STARTUP_MANAGER(soundManager);
 	{
 		//게임 루프 시작
 		MSG msg;
@@ -76,6 +79,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 
 Shutdown_Systems:
+	soundManager.Shutdown();
 	inputManager.Shutdown();
 	graphicSystem.ShutDown();
 	windowManager.Shutdown();
