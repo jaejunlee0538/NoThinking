@@ -7,6 +7,7 @@
 #include <NT_Graphic\GraphicSystem.h>
 #include <NT_Common\HashedString.h>
 #include <NT_Common\FreqEstimater.h>
+#include <NT_Common\DBManager.h>
 #include <NT_Input\InputManager.h>
 #include <NT_Sound\SoundManager.h>
 
@@ -41,6 +42,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	WindowManager windowManager(hInstance);
 	InputManager inputManager;
 	SoundManager soundManager;
+	DBManager dbManager;
 
 	STARTUP_MANAGER(windowManager, 800, 600);
 	STARTUP_MANAGER(graphicSystem, TRUE, windowManager.GetHWND());
