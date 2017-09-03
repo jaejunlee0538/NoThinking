@@ -15,6 +15,7 @@
 #include "cRawLoader.h"
 #include "cTerrain.h"
 
+
 enum
 {
 	E_CONFIRM_BUTTON = 213,
@@ -40,7 +41,7 @@ cHeightMap::cHeightMap(void)
 cHeightMap::~cHeightMap(void)
 {
 
-	cMainGame::~cMainGame();
+	cGameScene::~cGameScene();
 
 	SAFE_DELETE(m_pGrid);
 	SAFE_DELETE(m_pCamera);
@@ -68,8 +69,6 @@ cHeightMap::~cHeightMap(void)
 
 HRESULT cHeightMap::Setup()
 {
-	cMainGame::Setup();
-
 	D3DXCreateSprite(g_pD3DDevice, &m_pSprite);
 
 	m_RootObject = new cGameObject;
@@ -102,7 +101,6 @@ HRESULT cHeightMap::Setup()
 
 void cHeightMap::Update()
 {
-	cMainGame::Update();
 	g_pTimeManager->Update();
 
 	//if (m_pCrtCtrl) m_pCrtCtrl->Update(m_pMap);

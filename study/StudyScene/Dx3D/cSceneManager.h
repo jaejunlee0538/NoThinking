@@ -4,6 +4,7 @@
 #define g_pSceneManager cSceneManager::GetInstance()
 
 class cGameScene;
+
 class cSceneManager
 {
 private:

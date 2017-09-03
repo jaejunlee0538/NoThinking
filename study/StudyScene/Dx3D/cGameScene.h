@@ -2,8 +2,6 @@
 
 #include "cMainGame.h"
 
-#include "cHeightMap.h"
-
 class cGameScene
 {
 public:

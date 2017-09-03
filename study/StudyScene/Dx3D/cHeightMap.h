@@ -1,6 +1,6 @@
 #pragma once
 #include "cUIButton.h"
-#include "cMainGame.h"
+#include "cGameScene.h"
 
 class cGrid;
 class cCamera;
@@ -10,7 +10,7 @@ class cSkinnedMesh;
 class cFrustum;
 class cTerrain;
 
-class cHeightMap : public cMainGame
+class cHeightMap : public cGameScene 
 {
 private:
 	cGrid*			m_pGrid;
@@ -36,12 +36,11 @@ public:
 	cHeightMap(void);
 	~cHeightMap(void);
 
-	HRESULT Setup();
-	void Update();
-	void Render();
-	void MsgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	virtual HRESULT Setup() ;
+	virtual void Update() ;
+	virtual void Render() ;
+	virtual void MsgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) ;
 	void SetLight();
-
 
 };
 
