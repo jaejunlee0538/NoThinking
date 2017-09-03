@@ -168,7 +168,7 @@ namespace qwer {
 	}
 
 	size_t HashedString::Length() const {
-		return m_pStr ? ((StringTableEntry*)m_pStr)->nLength : 0;
+		return m_pStr ? (((StringTableEntry*)m_pStr) - 1)->nLength : 0;
 	}
 
 	bool HashedString::HasName(const char * str) {
@@ -186,7 +186,7 @@ namespace qwer {
 
 	StringTable * HashedString::GetNameTable()
 	{
-		if (m_pNameTable) {
+		if (!m_pNameTable) {
 			m_pNameTable = new StringTable();
 		}
 		return m_pNameTable;
@@ -195,14 +195,14 @@ namespace qwer {
 	void HashedString::_AddRef(const char * pStr)
 	{
 		if (pStr) {
-			((StringTableEntry*)pStr)->AddRef();
+			(((StringTableEntry*)pStr)-1)->AddRef();
 		}
 	}
 
 	void HashedString::_Release(const char * pStr)
 	{
 		if (pStr) {
-			StringTableEntry* pNameEntry = ((StringTableEntry*)pStr);
+			StringTableEntry* pNameEntry = ((StringTableEntry*)pStr)-1;
 			if (pNameEntry->Release() <= 0) {
 				GetNameTable()->RemoveName(pNameEntry);
 			}

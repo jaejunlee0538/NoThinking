@@ -191,7 +191,8 @@ namespace qwer {
 			LOG_DEBUG(Logging::CHANNEL_SOUND, "%s 재생(%d 채널)", keyName.c_str(), freeChannel);
 		}
 		else {
-			assert(false && "Cannot find sound");
+			LOG_ERROR(Logging::CHANNEL_SOUND, "%s 재생 실패", keyName.c_str());
+			//assert(false && "Cannot find sound");
 		}
 		return freeChannel;
 	}
