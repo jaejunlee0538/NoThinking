@@ -33,7 +33,11 @@ cSceneManager::~cSceneManager()
 
 HRESULT cSceneManager::Setup(void)
 {
-	return E_NOTIMPL;
+	_currentScene = NULL;
+	_loadingScene = NULL;
+	_readyScene = NULL;
+
+	return S_OK;
 }
 
 void cSceneManager::release(void)
