@@ -168,6 +168,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="NT_Common\DBManager.cpp" />
     <ClCompile Include="NT_Component\CameraComponent.cpp" />
     <ClCompile Include="NT_Component\ComponentBase.cpp" />
     <ClCompile Include="NT_Common\CRC32.cpp" />
@@ -197,6 +198,7 @@
     <ClCompile Include="NT_Common\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="NT_Common\DBManager.h" />
     <ClInclude Include="NT_Component\CameraComponent.h" />
     <ClInclude Include="NT_Component\ComponentBase.h" />
     <ClInclude Include="NT_Common\CRC32.h" />
