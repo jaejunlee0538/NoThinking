@@ -19,13 +19,12 @@ private:
 	static cMainGame* _loadingScene; //로딩씬
 	static cMainGame* _readyScene; //교체 대기 중인 씬
 
-								  //궁냐동 : 남궁영빈의 홈페이지...
 	mapSceneList _mSceneList; //씬리스트
 
 	DWORD _loadThreadID;
 
 public:
-	HRESULT init(void);
+	HRESULT Setup(void);
 	void release(void);
 	void update(void);
 	void render(void);
