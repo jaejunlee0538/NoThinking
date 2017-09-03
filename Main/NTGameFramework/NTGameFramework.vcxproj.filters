@@ -135,6 +135,7 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="NT_Sound\SoundManager.h" />
+    <ClInclude Include="NT_Common\DBManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -214,5 +215,6 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="NT_Sound\SoundManager.cpp" />
+    <ClCompile Include="NT_Common\DBManager.cpp" />
   </ItemGroup>
 </Project>
