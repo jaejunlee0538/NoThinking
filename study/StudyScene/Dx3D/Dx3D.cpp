@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Dx3D.h"
 #include "cMainGame.h"
+#include "cGameScene.h"
 
 #define MAX_LOADSTRING 100
 
@@ -13,6 +14,7 @@ TCHAR szTitle[MAX_LOADSTRING];					// 제목 표시줄 텍스트입니다.
 TCHAR szWindowClass[MAX_LOADSTRING];			// 기본 창 클래스 이름입니다.
 HWND g_hWnd;
 cMainGame* g_pMainGame;
+cGameScene* g_pGameScene;
 
 // 이 코드 모듈에 들어 있는 함수의 정방향 선언입니다.
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -48,6 +50,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	g_pMainGame = new cMainGame;
 	g_pMainGame->Setup();
 
+	g_pGameScene = new cGameScene;
+	g_pGameScene->Setup();
+
 	// 기본 메시지 루프입니다.
 	while(true)
 	{
@@ -68,10 +73,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 			// 업데이트 하고 그림 그린다.
 			g_pMainGame->Update();
 			g_pMainGame->Render();
+
+			g_pGameScene->Update();
+			g_pGameScene->Render();
 		}
 	}
 
 	if(g_pMainGame) delete g_pMainGame;
+	if (g_pGameScene) delete g_pGameScene;
 	return (int) msg.wParam;
 }
 
@@ -158,6 +167,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	if (g_pMainGame)
 	{
 		g_pMainGame->MsgProc(hWnd, message, wParam, lParam);
+	}
+
+	if (g_pGameScene)
+	{
+		g_pGameScene->MsgProc(hWnd, message, wParam, lParam);
 	}
 	
 	int wmId, wmEvent;

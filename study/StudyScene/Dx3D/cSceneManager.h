@@ -33,7 +33,7 @@ public:
 	cMainGame* addScene(string sceneName, cMainGame* scene);
 
 	//씬 교체...
-	bool changeScene(string sceneName);
+	HRESULT changeScene(string sceneName);
 
 	//로딩 쓰레드 함수
 	friend DWORD CALLBACK loadingThread(LPVOID prc);

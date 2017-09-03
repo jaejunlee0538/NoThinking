@@ -169,3 +169,4 @@ struct ST_SIZE
 #include "cSkinnedMeshManager.h"
 #include "cFontManager.h"
 #include "cKeyManager.h"
+#include "cSceneManager.h"

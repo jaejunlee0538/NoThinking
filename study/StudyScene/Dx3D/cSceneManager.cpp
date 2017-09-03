@@ -80,23 +80,23 @@ cMainGame * cSceneManager::addScene(string sceneName, cMainGame * scene)
 	return scene;
 }
 
-bool cSceneManager::changeScene(string sceneName)
+HRESULT cSceneManager::changeScene(string sceneName)
 {
 	//교체해야 할 씬을 찾는다
 	mapSceneIter find = _mSceneList.find(sceneName);
 
 	//교체 씬이 없으면 펄스..
-	if (find == _mSceneList.end()) return false;
+	if (find == _mSceneList.end()) return E_FAIL;
 
 	//교체 씬 초기화
-	if (_currentScene) 
+	if (SUCCEEDED(find->second->Setup()))
 	{
-		_currentScene->~cMainGame();
+		if (_currentScene) _currentScene->~cMainGame();
 		_currentScene = find->second;
 
-		return true;
+		return S_OK;
 	}
 
-	return false;
+	return E_FAIL;
 }
 
