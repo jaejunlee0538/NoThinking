@@ -1,11 +1,12 @@
 #pragma once
+#include <d3d9.h>
 #include <d3dx9.h>
 #include <NT_Common/Singleton.h>
 #include <NT_Common/FreqEstimater.h>
 #include <NT_Common/MacroUtils.h>
 namespace qwer {
-	typedef LPDIRECT3DDEVICE9 DirectXDevicePtr;
-
+	typedef LPDIRECT3DDEVICE9	DirectXDevicePtr;
+	typedef LPDIRECT3DTEXTURE9	DirectXTexturePtr;
 	class GraphicSystem : public Singleton<GraphicSystem>
 	{
 	private:

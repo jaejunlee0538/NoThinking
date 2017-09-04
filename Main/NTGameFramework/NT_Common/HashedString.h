@@ -1,5 +1,5 @@
 #pragma once
-
+#include <functional>
 namespace qwer {
 	class StringTable;
 
@@ -33,5 +33,12 @@ namespace qwer {
 		static StringTable* m_pNameTable;
 		
 		const char* m_pStr;
+	};
+
+	struct HashedStringHashFunc {
+	public:
+		size_t operator()(const HashedString& hs) const {
+			return std::hash<size_t>{}(size_t(hs.c_str()));
+		}
 	};
 }

@@ -8,5 +8,6 @@ namespace qwer {
 
 	TextureManager::~TextureManager()
 	{
+
 	}
 }
