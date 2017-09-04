@@ -11,6 +11,15 @@ namespace qwer {
 	{
 	}
 
+	bool DBManager::StartUp()
+	{
+		return true;
+	}
+
+	void DBManager::Shutdown()
+	{
+	}
+
 	void DBManager::save(const char* szFolder, const char* saveFileName, std::vector<std::string> vStr)
 	{
 		HANDLE file;

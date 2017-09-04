@@ -13,6 +13,9 @@ namespace qwer {
 		DBManager();
 		~DBManager();
 
+		bool StartUp();
+		void Shutdown();
+
 		void save(const char* szFolder, const char* saveFileName, std::vector<std::string> vStr);
 		std::vector<std::string> load(const char* szFolder, const char* loadFileName);
 
