@@ -11,6 +11,20 @@ namespace qwer {
 	{
 	}
 
+	void DBManager::save(const char* szFolder, const char* saveFileName, std::vector<std::string> vStr)
+	{
+		HANDLE file;
+		char str[128];
+		DWORD write;
+
+		strncpy_s(str, 128, vectorArrayCombine(vStr), 126);
+
+		file = CreateFile(saveFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS,
+			FILE_ATTRIBUTE_NORMAL, NULL);
+
+		WriteFile(file, str, strlen(str), &write, NULL);
+		CloseHandle(file);
+	}
 	std::vector<std::string> DBManager::load(const char* szFolder, const char* loadFileName)
 	{
 		HANDLE file;
@@ -46,7 +60,7 @@ namespace qwer {
 		std::vector<std::string> vArray;
 		char* separation = ",+=*&^%$#@";
 		char* token;
-		char** content=NULL;
+		char** content = NULL;
 
 		token = strtok_s(charArray, separation, content);
 		vArray.push_back(token);
