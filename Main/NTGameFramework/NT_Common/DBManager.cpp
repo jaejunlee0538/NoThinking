@@ -11,6 +11,15 @@ namespace qwer {
 	{
 	}
 
+	bool DBManager::StartUp()
+	{
+		return true;
+	}
+
+	void DBManager::Shutdown()
+	{
+	}
+
 	void DBManager::save(const char* szFolder, const char* saveFileName, std::vector<std::string> vStr)
 	{
 		HANDLE file;
@@ -58,16 +67,17 @@ namespace qwer {
 	std::vector<std::string> DBManager::charArraySeparation(char charArray[])
 	{
 		std::vector<std::string> vArray;
-		/*char* separation = ",+=*&^%$#@";
+		char* separation = ",+=*&^%$#@";
 		char* token;
+		char** content = NULL;
 
-		token = strtok(charArray, separation);
+		token = strtok_s(charArray, separation, content);
 		vArray.push_back(token);
 
-		while (NULL != (token = strtok(NULL, separation)))
+		while (NULL != (token = strtok_s(NULL, separation, content)))
 		{
 			vArray.push_back(token);
-		}*/
+		}
 		return vArray;
 	}
 

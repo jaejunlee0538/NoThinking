@@ -2,7 +2,6 @@
 #include "WindowManager.h"
 #include <NT_Common/TimeManager.h>
 #include <NT_Common/FreqEstimater.h>
-#include <NT_Common/DBManager.h>
 #include <NT_Input/InputManager.h>
 
 namespace qwer {

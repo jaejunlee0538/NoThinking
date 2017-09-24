@@ -4,6 +4,7 @@
 #include <string>
 #include <stdio.h>
 #include <string.h>
+
 namespace qwer {
 
 	class DBManager : public Singleton<DBManager>
@@ -11,6 +12,9 @@ namespace qwer {
 	public:
 		DBManager();
 		~DBManager();
+
+		bool StartUp();
+		void Shutdown();
 
 		void save(const char* szFolder, const char* saveFileName, std::vector<std::string> vStr);
 		std::vector<std::string> load(const char* szFolder, const char* loadFileName);

@@ -47,6 +47,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	STARTUP_MANAGER(inputManager);
 	STARTUP_MANAGER(soundManager);
 
+
 	soundManager.addSound(HashedString("Parasail.mp3"), HashedString("Parasail.mp3"), true, true);
 	soundManager.play(HashedString("Parasail.mp3"));
 	{
