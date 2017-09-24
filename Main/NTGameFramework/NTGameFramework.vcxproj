@@ -168,10 +168,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="NT_Graphic\MaterialManager.cpp" />
+    <ClCompile Include="NT_Graphic\LightComponent.cpp" />
+    <ClCompile Include="NT_Graphic\MeshRenderComponent.cpp" />
     <ClCompile Include="NT_Common\DBManager.cpp" />
-    <ClCompile Include="NT_Component\CameraComponent.cpp" />
+    <ClCompile Include="NT_Graphic\CameraComponent.cpp" />
     <ClCompile Include="NT_Component\ComponentBase.cpp" />
     <ClCompile Include="NT_Common\CRC32.cpp" />
+    <ClCompile Include="NT_Graphic\ShaderMaterial.cpp" />
     <ClCompile Include="NT_Message\cVariant.cpp" />
     <ClCompile Include="NT_GameObject\EnemyRespawner.cpp" />
     <ClCompile Include="NT_GameObject\GameObject.cpp" />
@@ -188,8 +192,8 @@
     <ClCompile Include="NT_Message\MessageManager.cpp" />
     <ClCompile Include="NT_Physics\PhysicsSystem.cpp" />
     <ClCompile Include="NT_Math\Quaternion.cpp" />
-    <ClCompile Include="NT_Component\RenderComponentBase.cpp" />
     <ClCompile Include="NT_Sound\SoundManager.cpp" />
+    <ClCompile Include="NT_Graphic\SkinnedMeshRenderComponent.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="NT_Graphic\TextureManager.cpp" />
     <ClCompile Include="NT_Common\TimeManager.cpp" />
@@ -198,10 +202,14 @@
     <ClCompile Include="NT_Common\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="NT_Graphic\MaterialManager.h" />
+    <ClInclude Include="NT_Graphic\LightComponent.h" />
+    <ClInclude Include="NT_Graphic\MeshRenderComponent.h" />
     <ClInclude Include="NT_Common\DBManager.h" />
-    <ClInclude Include="NT_Component\CameraComponent.h" />
+    <ClInclude Include="NT_Graphic\CameraComponent.h" />
     <ClInclude Include="NT_Component\ComponentBase.h" />
     <ClInclude Include="NT_Common\CRC32.h" />
+    <ClInclude Include="NT_Graphic\ShaderMaterial.h" />
     <ClInclude Include="NT_Message\cVariant.h" />
     <ClInclude Include="NT_GameObject\EnemyRespawner.h" />
     <ClInclude Include="NT_Common\FreqEstimater.h" />
@@ -224,9 +232,9 @@
     <ClInclude Include="NT_Message\MessageTypes.h" />
     <ClInclude Include="NT_Physics\PhysicsSystem.h" />
     <ClInclude Include="NT_Math\Quaternion.h" />
-    <ClInclude Include="NT_Component\RenderComponentBase.h" />
     <ClInclude Include="NT_Common\Singleton.h" />
     <ClInclude Include="NT_Sound\SoundManager.h" />
+    <ClInclude Include="NT_Graphic\SkinnedMeshRenderComponent.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="NT_Common\STLUtils.h" />
     <ClInclude Include="NT_Graphic\TextureManager.h" />

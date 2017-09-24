@@ -86,10 +86,10 @@ namespace qwer {
 		if (!hWnd) {
 			return false;
 		}
-		m_hWnd = hWnd;
+		m_HWND = hWnd;
 		RECT rect = { 0, 0, width, height };
 		AdjustWindowRect(&rect, winStyle, false);
-		SetWindowPos(m_hWnd, NULL, 50, 50, rect.right - rect.left,
+		SetWindowPos(m_HWND, NULL, 50, 50, rect.right - rect.left,
 			rect.bottom - rect.top, SWP_NOZORDER | SWP_NOMOVE);
 
 		ShowWindow(hWnd, SW_SHOW);

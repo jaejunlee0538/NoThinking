@@ -10,8 +10,8 @@ namespace qwer {
 	{
 	protected:
 		HashedString m_name;
-		GameObject* m_pOwner;
-		bool m_bEnabled;
+		GameObject* m_owner;
+		bool m_isEnabled;
 	public:
 		ComponentBase();
 		virtual ~ComponentBase();
@@ -23,11 +23,11 @@ namespace qwer {
 		virtual void LateUpdate() {}
 
 		//GameObject를 활성화/비활성화 시킨다.
-		MAKE_SETTER(m_bEnabled, Enabled);
-		MAKE_GETTER(m_bEnabled, Enabled);
+		void SetEnable(bool bEnabled);
+		bool GetEnabled() const;
 
 		//this 컴포넌트를 소유하고 있는 게임 오브젝트를 설정한다.
-		MAKE_SETTER(m_pOwner, Owner);
-		MAKE_GETTER(m_pOwner, Owner);
+		void SetOwner(GameObject* owner);
+		GameObject* GetOwner();
 	};
 }

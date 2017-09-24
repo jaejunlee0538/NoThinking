@@ -5,7 +5,7 @@
 #include <NT_Common\TimeManager.h>
 namespace qwer {
 	GraphicSystem::GraphicSystem()
-		:m_hWnd(0), m_pD3D(NULL), m_pD3DDevice(NULL), m_FPSMeasurer(1.0f)
+		:m_HWND(0), m_D3D(NULL), m_D3DDevice(NULL), m_FPSMeasurer(1.0f)
 	{
 	}
 
@@ -15,13 +15,13 @@ namespace qwer {
 
 	bool GraphicSystem::StartUp(BOOL windowed, HWND hWnd)
 	{
-		m_hWnd = hWnd;
+		m_HWND = hWnd;
 
-		m_pD3D = Direct3DCreate9(D3D_SDK_VERSION);
+		m_D3D = Direct3DCreate9(D3D_SDK_VERSION);
 
 		UINT adapterNum = -1;
 		//내꺼에서는 하나밖에 안뜨네...(내장 아니면 외장)
-		UINT nAdapters = m_pD3D->GetAdapterCount();
+		UINT nAdapters = m_D3D->GetAdapterCount();
 		if (nAdapters <= 0) {
 			LOG_ERROR(Logging::CHANNEL_CORE, "사용가능한 어댑터가 없습니다.");
 			return false;
@@ -29,7 +29,7 @@ namespace qwer {
 
 		std::vector<D3DADAPTER_IDENTIFIER9> adapterIdentifiers(nAdapters);
 		for (int i = 0; i < nAdapters; ++i) {
-			m_pD3D->GetAdapterIdentifier(i, 0, &adapterIdentifiers[i]);
+			m_D3D->GetAdapterIdentifier(i, 0, &adapterIdentifiers[i]);
 			LOG_INFO(Logging::CHANNEL_CORE, "Adapter %d : %s", i, adapterIdentifiers[i].DeviceName);
 			LOG_INFO(Logging::CHANNEL_CORE, "Adapter %d Desc : %s", i, adapterIdentifiers[i].Description);
 		}
@@ -42,7 +42,7 @@ namespace qwer {
 
 		size_t iConfig;
 		for (iConfig = 0; iConfig < fmtArr.size(); ++iConfig) {
-			if (SUCCEEDED(m_pD3D->CheckDeviceType(adapterNum, devArr[iConfig], fmtArr[iConfig], fmtArr[iConfig], windowed))) {
+			if (SUCCEEDED(m_D3D->CheckDeviceType(adapterNum, devArr[iConfig], fmtArr[iConfig], fmtArr[iConfig], windowed))) {
 				break;
 			}
 		}
@@ -76,7 +76,7 @@ namespace qwer {
 		D3DCAPS9 stCaps;
 		int nVertexProcessing;
 
-		m_pD3D->GetDeviceCaps(adapterNum, devArr[iConfig], &stCaps);
+		m_D3D->GetDeviceCaps(adapterNum, devArr[iConfig], &stCaps);
 
 		if (stCaps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT) {
 			LOG_INFO(Logging::CHANNEL_CORE, "Vertex Processing : Hardware");
@@ -102,7 +102,7 @@ namespace qwer {
 
 		//깊이-스텐실 버퍼 포맷 
 		D3DFORMAT depthstencil = D3DFMT_D24S8;
-		if (FAILED(m_pD3D->CheckDeviceFormat(adapterNum, devArr[iConfig], fmtArr[iConfig], D3DUSAGE_DEPTHSTENCIL, D3DRTYPE_SURFACE, depthstencil))) {
+		if (FAILED(m_D3D->CheckDeviceFormat(adapterNum, devArr[iConfig], fmtArr[iConfig], D3DUSAGE_DEPTHSTENCIL, D3DRTYPE_SURFACE, depthstencil))) {
 			//게임 구현에 필요한 Depth-Stencil버퍼를 이요할 수 없기 때문에 게임을 실행할 수 없는건가?
 			LOG_ERROR(Logging::CHANNEL_CORE, "Depth-Stencil format D24S8 unsupported.");
 			return false;
@@ -114,8 +114,8 @@ namespace qwer {
 		for (int i = D3DMULTISAMPLE_2_SAMPLES; i < D3DMULTISAMPLE_16_SAMPLES; ++i) {
 			D3DMULTISAMPLE_TYPE mst = (D3DMULTISAMPLE_TYPE)i;
 			DWORD quality;
-			if (SUCCEEDED(m_pD3D->CheckDeviceMultiSampleType(adapterNum, devArr[iConfig], fmtArr[iConfig], windowed, mst, &quality))) {
-				if (SUCCEEDED(m_pD3D->CheckDeviceMultiSampleType(adapterNum, devArr[iConfig], depthstencil, windowed, mst, &quality))) {
+			if (SUCCEEDED(m_D3D->CheckDeviceMultiSampleType(adapterNum, devArr[iConfig], fmtArr[iConfig], windowed, mst, &quality))) {
+				if (SUCCEEDED(m_D3D->CheckDeviceMultiSampleType(adapterNum, devArr[iConfig], depthstencil, windowed, mst, &quality))) {
 					LOG_INFO(Logging::CHANNEL_CORE, "%d Sample Supported", mst);
 					multiSampleType = mst;
 					maxQuality = quality - 1;
@@ -125,13 +125,13 @@ namespace qwer {
 
 		//
 		D3DDISPLAYMODE bestmode;
-		UINT nAdapterMode = m_pD3D->GetAdapterModeCount(adapterNum, fmtArr[iConfig]);
+		UINT nAdapterMode = m_D3D->GetAdapterModeCount(adapterNum, fmtArr[iConfig]);
 		assert(nAdapterMode > 0);
-		m_pD3D->EnumAdapterModes(adapterNum, fmtArr[iConfig], 0, &bestmode);
+		m_D3D->EnumAdapterModes(adapterNum, fmtArr[iConfig], 0, &bestmode);
 		for (UINT i = 1; i < nAdapterMode; i++)
 		{
 			D3DDISPLAYMODE dispmode;
-			m_pD3D->EnumAdapterModes(adapterNum, fmtArr[iConfig], i, &dispmode);
+			m_D3D->EnumAdapterModes(adapterNum, fmtArr[iConfig], i, &dispmode);
 			if (dispmode.Width > bestmode.Width)
 			{
 				bestmode.Width = dispmode.Width;
@@ -170,12 +170,12 @@ namespace qwer {
 			stD3DPP.FullScreen_RefreshRateInHz = bestmode.RefreshRate;
 		}
 
-		HRESULT ret = m_pD3D->CreateDevice(adapterNum,
+		HRESULT ret = m_D3D->CreateDevice(adapterNum,
 			devArr[iConfig],
-			m_hWnd,
+			m_HWND,
 			nVertexProcessing,
 			&stD3DPP,
-			&m_pD3DDevice);
+			&m_D3DDevice);
 		if (FAILED(ret)) {
 			LOG_ERROR(Logging::CHANNEL_CORE, "CreateDevice Error : %s", DXGetErrorDescriptionA(ret));
 			return false;
@@ -186,28 +186,40 @@ namespace qwer {
 
 	void GraphicSystem::ShutDown()
 	{
-		if (m_pD3DDevice) {
-			ULONG nUnreleased = m_pD3DDevice->Release();
-			m_pD3DDevice = NULL;
+		if (m_D3DDevice) {
+			ULONG nUnreleased = m_D3DDevice->Release();
+			m_D3DDevice = NULL;
 			if (nUnreleased > 0) {
 				LOG_ERROR(Logging::CHANNEL_CORE, "%u Unreleased Resource", nUnreleased);
 				LOG_FLUSH_LOG();
 			}
 			assert(nUnreleased == 0 && "반환되지 않은 리소스가 있습니다.");
 		}
-		SAFE_RELEASE(m_pD3D);
+		SAFE_RELEASE(m_D3D);
 	}
 
 	void GraphicSystem::Render()
 	{
 		m_FPSMeasurer.update(GET_TIMEMANAGER().CurrentRealTime());
 
-		m_pD3DDevice->Clear(
+		m_D3DDevice->Clear(
 			0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
 			D3DCOLOR_XRGB(0, 0, 0),
 			1.0f, 0);
-		m_pD3DDevice->BeginScene();
-		m_pD3DDevice->EndScene();
-		m_pD3DDevice->Present(0, 0, 0, 0);
+		m_D3DDevice->BeginScene();
+		m_D3DDevice->EndScene();
+		m_D3DDevice->Present(0, 0, 0, 0);
+	}
+	void GraphicSystem::EnableDrawFPS(bool enable) {
+		m_enableDrawFPS = enable;
+	}
+	bool GraphicSystem::IsDrawFPSEnabled() const {
+		return m_enableDrawFPS;
+	}
+	HWND GraphicSystem::GetHWND() {
+		return m_HWND;
+	}
+	DirectXDevicePtr GraphicSystem::GetDeivce() {
+		return m_D3DDevice;
 	}
 }

@@ -10,13 +10,13 @@ namespace qwer {
 	class GraphicSystem : public Singleton<GraphicSystem>
 	{
 	private:
-		bool				m_bDrawFPS;
+		bool				m_enableDrawFPS;
 		FreqEstimater		m_FPSMeasurer;
 
-		HWND				m_hWnd;
-		LPDIRECT3D9			m_pD3D;
-		DirectXDevicePtr	m_pD3DDevice;
-		LPD3DXFONT			m_pFont;
+		HWND				m_HWND;
+		LPDIRECT3D9			m_D3D;
+		DirectXDevicePtr	m_D3DDevice;
+		LPD3DXFONT			m_font;
 	public:
 		GraphicSystem();
 		~GraphicSystem();
@@ -26,8 +26,10 @@ namespace qwer {
 
 		void Render();
 
-		MAKE_GETSETTER(m_bDrawFPS, DrawFPS);
-		MAKE_GETTER(m_hWnd, HWND);
-		MAKE_GETTER(m_pD3DDevice, Device);
+		void EnableDrawFPS(bool enable);
+		bool IsDrawFPSEnabled() const;
+
+		HWND GetHWND();
+		DirectXDevicePtr GetDeivce();
 	};
 }

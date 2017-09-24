@@ -14,13 +14,13 @@ namespace qwer {
 		HRESULT MsgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 		HWND GetHWND() {
-			return m_hWnd;
+			return m_HWND;
 		}
 	private:
 		bool InitWindow(int width, int height);
 		int m_windowWidth;
 		int m_windowHeight;
 		HINSTANCE	m_hInstance;
-		HWND		m_hWnd;
+		HWND		m_HWND;
 	};
 }

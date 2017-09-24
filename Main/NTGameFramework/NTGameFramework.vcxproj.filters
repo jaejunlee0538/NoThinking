@@ -62,13 +62,7 @@
     <ClInclude Include="NT_Common\WindowManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="NT_Component\CameraComponent.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="NT_Component\ComponentBase.h">
-      <Filter>Component</Filter>
-    </ClInclude>
-    <ClInclude Include="NT_Component\RenderComponentBase.h">
       <Filter>Component</Filter>
     </ClInclude>
     <ClInclude Include="NT_Component\TransformComponent.h">
@@ -136,6 +130,14 @@
     </ClInclude>
     <ClInclude Include="NT_Sound\SoundManager.h" />
     <ClInclude Include="NT_Common\DBManager.h" />
+    <ClInclude Include="NT_Graphic\MeshRenderComponent.h" />
+    <ClInclude Include="NT_Graphic\SkinnedMeshRenderComponent.h" />
+    <ClInclude Include="NT_Graphic\CameraComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="NT_Graphic\LightComponent.h" />
+    <ClInclude Include="NT_Graphic\MaterialManager.h" />
+    <ClInclude Include="NT_Graphic\ShaderMaterial.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -154,13 +156,7 @@
     <ClCompile Include="NT_Common\WindowManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="NT_Component\CameraComponent.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="NT_Component\ComponentBase.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
-    <ClCompile Include="NT_Component\RenderComponentBase.cpp">
       <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="NT_Component\TransformComponent.cpp">
@@ -216,5 +212,13 @@
     </ClCompile>
     <ClCompile Include="NT_Sound\SoundManager.cpp" />
     <ClCompile Include="NT_Common\DBManager.cpp" />
+    <ClCompile Include="NT_Graphic\MeshRenderComponent.cpp" />
+    <ClCompile Include="NT_Graphic\SkinnedMeshRenderComponent.cpp" />
+    <ClCompile Include="NT_Graphic\CameraComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="NT_Graphic\LightComponent.cpp" />
+    <ClCompile Include="NT_Graphic\MaterialManager.cpp" />
+    <ClCompile Include="NT_Graphic\ShaderMaterial.cpp" />
   </ItemGroup>
 </Project>
