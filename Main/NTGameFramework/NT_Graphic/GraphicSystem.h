@@ -1,12 +1,10 @@
 #pragma once
-#include <d3d9.h>
-#include <d3dx9.h>
 #include <NT_Common/Singleton.h>
 #include <NT_Common/FreqEstimater.h>
 #include <NT_Common/MacroUtils.h>
+#include "GraphicDeviceBase.h"
 namespace qwer {
-	typedef LPDIRECT3DDEVICE9	DirectXDevicePtr;
-	typedef LPDIRECT3DTEXTURE9	DirectXTexturePtr;
+	
 	class GraphicSystem : public Singleton<GraphicSystem>
 	{
 	private:
@@ -14,9 +12,7 @@ namespace qwer {
 		FreqEstimater		m_FPSMeasurer;
 
 		HWND				m_HWND;
-		LPDIRECT3D9			m_D3D;
-		DirectXDevicePtr	m_D3DDevice;
-		LPD3DXFONT			m_font;
+		GraphicDeviceBase*			m_graphicDevice;
 	public:
 		GraphicSystem();
 		~GraphicSystem();
@@ -30,6 +26,6 @@ namespace qwer {
 		bool IsDrawFPSEnabled() const;
 
 		HWND GetHWND();
-		DirectXDevicePtr GetDeivce();
+		GraphicDeviceBase* GetDeivce();
 	};
 }

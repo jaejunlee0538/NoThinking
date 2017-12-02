@@ -168,6 +168,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="NT_Graphic\GraphicDeviceBase.cpp" />
     <ClCompile Include="NT_Graphic\MaterialManager.cpp" />
     <ClCompile Include="NT_Graphic\LightComponent.cpp" />
     <ClCompile Include="NT_Graphic\MeshRenderComponent.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="NT_Common\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="NT_Graphic\GraphicDeviceBase.h" />
     <ClInclude Include="NT_Graphic\MaterialManager.h" />
     <ClInclude Include="NT_Graphic\LightComponent.h" />
     <ClInclude Include="NT_Graphic\MeshRenderComponent.h" />

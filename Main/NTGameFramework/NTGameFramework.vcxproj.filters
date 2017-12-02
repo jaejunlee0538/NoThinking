@@ -138,6 +138,7 @@
     <ClInclude Include="NT_Graphic\LightComponent.h" />
     <ClInclude Include="NT_Graphic\MaterialManager.h" />
     <ClInclude Include="NT_Graphic\ShaderMaterial.h" />
+    <ClInclude Include="NT_Graphic\GraphicDeviceBase.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -220,5 +221,6 @@
     <ClCompile Include="NT_Graphic\LightComponent.cpp" />
     <ClCompile Include="NT_Graphic\MaterialManager.cpp" />
     <ClCompile Include="NT_Graphic\ShaderMaterial.cpp" />
+    <ClCompile Include="NT_Graphic\GraphicDeviceBase.cpp" />
   </ItemGroup>
 </Project>

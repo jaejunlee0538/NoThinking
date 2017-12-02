@@ -25,19 +25,3 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <unordered_map>
-
-#include <d3d9.h>
-#include <d3dx9.h>
-#include <DxErr.h>
-
-#pragma comment(lib, "d3d9.lib")
-#pragma comment(lib, "d3dx9.lib")
-#pragma comment(lib, "DxErr.lib")
-#pragma comment(lib, "legacy_stdio_definitions.lib")
-
-//FMOD 라이브러리
-#ifdef NDEBUG
-#pragma comment(lib, "fmodex_vc.lib")
-#else
-#pragma comment(lib, "fmodexL_vc.lib")
-#endif
